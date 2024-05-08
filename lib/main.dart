@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'pantalla5.dart';
-import 'pantalla4.dart';
-import 'pantalla3.dart';
-import 'pantalla2.dart';
-import 'pantalla1.dart';
 import 'my_drawer_header.dart';
+import 'pantalla1.dart';
+import 'pantalla2.dart';
+import 'pantalla3.dart';
+import 'pantalla4.dart';
+import 'pantalla5.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,15 +12,16 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: "Drawer Pages Lozano0373",
       home: HomePage(),
     );
   }
 }
-//s9s9s9s  rrrrrrr
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,27 +30,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var currentPage = DrawerSections.dashboard;
+  var currentPage = DrawerSections.pantalla1;
 
   @override
   Widget build(BuildContext context) {
     var container;
-    if (currentPage == DrawerSections.dashboard) {
+    String pageTitle = "";
+    if (currentPage == DrawerSections.pantalla1) {
       container = Pantalla1();
-    } else if (currentPage == DrawerSections.contacts) {
+      pageTitle = "Sucursal";
+    } else if (currentPage == DrawerSections.pantalla2) {
       container = Pantalla2();
-    } else if (currentPage == DrawerSections.events) {
+      pageTitle = "Bomba";
+    } else if (currentPage == DrawerSections.pantalla3) {
       container = Pantalla3();
-    } else if (currentPage == DrawerSections.notes) {
+      pageTitle = "Empleados";
+    } else if (currentPage == DrawerSections.pantalla4) {
       container = Pantalla4();
-    } else if (currentPage == DrawerSections.settings) {
+      pageTitle = "Venta";
+    } else if (currentPage == DrawerSections.pantalla5) {
       container = Pantalla5();
+      pageTitle = "Gasolina";
     }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff003d02),
-        title: Text("Drawer Pages Lozano0373",
-            style: TextStyle(color: Colors.white)),
+        title: Text(pageTitle, style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Color(0xffffffff)),
       ),
       body: container,
@@ -77,17 +82,16 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         // shows the list of menu drawer
         children: [
-          menuItem(1, "Aterrizaje", Icons.place_outlined,
-              currentPage == DrawerSections.dashboard ? true : false),
-          menuItem(2, "Contactos", Icons.people_alt_outlined,
-              currentPage == DrawerSections.contacts ? true : false),
-          menuItem(3, "Redondeado", Icons.adjust_rounded,
-              currentPage == DrawerSections.events ? true : false),
-          menuItem(4, "Notas", Icons.notes,
-              currentPage == DrawerSections.notes ? true : false),
-          Divider(),
-          menuItem(5, "Contenedor Curvo", Icons.rectangle_rounded,
-              currentPage == DrawerSections.settings ? true : false),
+          menuItem(1, "Tabla Sucursal", Icons.business,
+              currentPage == DrawerSections.pantalla1 ? true : false),
+          menuItem(2, "Tabla Bomba", Icons.local_gas_station,
+              currentPage == DrawerSections.pantalla2 ? true : false),
+          menuItem(3, "Tabla Empleados", Icons.engineering,
+              currentPage == DrawerSections.pantalla3 ? true : false),
+          menuItem(4, "Tabla Venta", Icons.attach_money,
+              currentPage == DrawerSections.pantalla4 ? true : false),
+          menuItem(5, "Tabla Gasolina", Icons.gas_meter,
+              currentPage == DrawerSections.pantalla5 ? true : false),
         ],
       ),
     );
@@ -101,15 +105,15 @@ class _HomePageState extends State<HomePage> {
           Navigator.pop(context);
           setState(() {
             if (id == 1) {
-              currentPage = DrawerSections.dashboard;
+              currentPage = DrawerSections.pantalla1;
             } else if (id == 2) {
-              currentPage = DrawerSections.contacts;
+              currentPage = DrawerSections.pantalla2;
             } else if (id == 3) {
-              currentPage = DrawerSections.events;
+              currentPage = DrawerSections.pantalla3;
             } else if (id == 4) {
-              currentPage = DrawerSections.notes;
+              currentPage = DrawerSections.pantalla4;
             } else if (id == 5) {
-              currentPage = DrawerSections.settings;
+              currentPage = DrawerSections.pantalla5;
             }
           });
         },
@@ -143,9 +147,9 @@ class _HomePageState extends State<HomePage> {
 }
 
 enum DrawerSections {
-  dashboard,
-  contacts,
-  events,
-  notes,
-  settings,
+  pantalla1,
+  pantalla2,
+  pantalla3,
+  pantalla4,
+  pantalla5,
 }
